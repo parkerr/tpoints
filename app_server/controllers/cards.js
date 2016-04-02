@@ -1,5 +1,5 @@
 module.exports.cardList = function(req, res){
-	res.render('index', { title: 'About TraPoints' });	
+	res.render('card-list', { title: 'Cards' });	
 }
 
 module.exports.cardDetails = function(req, res){
