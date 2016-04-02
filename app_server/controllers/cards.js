@@ -3,7 +3,7 @@ module.exports.cardList = function(req, res){
 }
 
 module.exports.cardDetails = function(req, res){
-	res.render('index', { title: 'Card Details' });	
+	res.render('card-detail', { title: 'Card Details' });	
 }
 
 module.exports.cardNew = function(req, res){

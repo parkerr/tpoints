@@ -1,18 +1,47 @@
 extends layout
 
 block content
-  #banner.page-header
-    .row
-      .col-lg-6
-        h1 Active Cards
-          small &nbsp; - Lists the currently registered cards
+  .row.page-header
+    .col-lg-12
+        h1 Card Details
   .row
-    .col-xs-12
-      .row.list.group
-        .col-xs-12.list-group-item
-          p
-            span.label Card Number:&nbsp;
-            a(href="/").label.label-primary 123456789101112 &nbsp;
-            span.label Points:&nbsp;
-            span.label.label-primary.points 345 &nbsp;
+    .col-xs-12.col-sm-6
+      .row
+        .panel.panel-primary
+          .panel-heading
+            h2.panel-title Current Details
+          .panel-body
+            p.cardnumber Cardnumber 12345678910
+            p.points Points 345
+            a.btn.btn-default.pull-right(href='/cards/card/new') Add Points
+            .row
+            a.btn.btn-default.pull-right(href='/cards/card/new') Redeem Points
+    .col-xs-12.col-sm-6
+        .panel.panel-primary
+          .panel-heading
+            h2.panel-title QR Code
+          .panel-body
+            #qrcode.well.well-sm.col-centred.row-centred
+            script.
+              new QRCode(document.getElementById("qrcode"), {text: "1", width: 120, height:120});
+              
+    .row
+      .col-xs-12
+        .panel.panel-primary.history-panel
+          .panel-heading
+            h2.panel-title Points History
+          .panel-body.history-container
+            .row
+              .history
+                .well.well-sm.history-header
+                  small.historyTimestamp 16 July 2016 &nbsp;
+                  small.points 123
+            .row
+              .history
+                .well.well-sm.history-header
+                  small.historyTimestamp 18 July 2016 &nbsp;
+                  small.points 456
+                  
+
+            
 
