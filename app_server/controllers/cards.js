@@ -7,9 +7,9 @@ module.exports.cardDetails = function(req, res){
 }
 
 module.exports.cardNew = function(req, res){
-	res.render('index', { title: 'New Card' });	
+	res.render('card-new', { title: 'New Card' });	
 }
 
 module.exports.cardUpdate = function(req, res){
-	res.render('index', { title: 'Update Card' });	
+	res.render('card-update', { title: 'Update Card' });	
 }
