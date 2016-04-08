@@ -1,8 +1,14 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
+
 var dbURI = 'mongodb://localhost/trapoints';
+if(process.env.NODE_ENV == 'production'){
+  dbURI = process.env.MONGOLAB_URI;
+  //dbURI = 'mongodb://heroku_dgk2dlcc:gbg95a5edub3chlgdu9kc57o4i@ds019940.mlab.com:19940/heroku_dgk2dlcc';
+}
 mongoose.connect(dbURI);
 
+//Send messages to console so we know we have connected ok
 mongoose.connection.on('connected', function(){
   console.log('Mongoose connected to ' + dbURI);
 })
