@@ -4,15 +4,17 @@ block content
   #banner.page-header
     .row
       .col-lg-6
-        h1 Active Cards
+        h1= pageHeader.title
           small &nbsp; - Lists the currently registered cards
   .row
     .col-xs-12
       .row.list.group
+      
+      each card in cards
         .col-xs-12.list-group-item
-          p
+          
             span.label Card Number:&nbsp;
-            a(href="/").label.label-primary 123456789101112 &nbsp;
+            a(href="/cards/card/#{card.cardNumber}").label.label-primary #{card.cardNumber} &nbsp;
             span.label Points:&nbsp;
-            span.label.label-primary.points 345 &nbsp;
+            span.label.label-primary.points #{card.points} &nbsp;
 

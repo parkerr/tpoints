@@ -3,7 +3,7 @@ extends layout
 block content
   .row.page-header
     .col-lg-12
-        h1 Card Details
+        h1= pageHeader.title
   .row
     .col-xs-12.col-sm-6
       .row
@@ -11,8 +11,8 @@ block content
           .panel-heading
             h2.panel-title Current Details
           .panel-body
-            p.cardnumber Cardnumber 12345678910
-            p.points Points 345
+            p.cardnumber Cardnumber #{cardNumber}
+            p.points Points #{points}
             a.btn.btn-default.pull-right(href='/cards/card/new') Add Points
             .row
             a.btn.btn-default.pull-right(href='/cards/card/new') Redeem Points
@@ -23,7 +23,7 @@ block content
           .panel-body
             #qrcode.well.well-sm.col-centred.row-centred
             script.
-              new QRCode(document.getElementById("qrcode"), {text: "12345678910", width: 101, height:101});
+              new QRCode(document.getElementById("qrcode"), {text: #{cardNumber}, width: 101, height:101});
               
     .row
       .col-xs-12
@@ -31,16 +31,12 @@ block content
           .panel-heading
             h2.panel-title Points History
           .panel-body.history-container
-            .row
-              .history
-                .well.well-sm.history-header
-                  small.historyTimestamp 16 July 2016 &nbsp;
-                  small.points 123
-            .row
-              .history
-                .well.well-sm.history-header
-                  small.historyTimestamp 18 July 2016 &nbsp;
-                  small.points 456
+            each item in historys
+              .col-xs-12.list-group-item
+                .row
+                  small.historyTimestamp #{item.date} &nbsp;
+                  small.points #{item.points}
+
                   
 
             
