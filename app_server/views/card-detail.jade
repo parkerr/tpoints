@@ -13,9 +13,15 @@ block content
           .panel-body
             p.cardnumber Cardnumber #{cardNumber}
             p.points Points #{points}
-            a.btn.btn-default.pull-right(href='/cards/card/new') Add Points
             .row
-            a.btn.btn-default.pull-right(href='/cards/card/new') Redeem Points
+              .col-xs-12.col-sm-6
+                form.form-horizontal(action="/cards/#{cardNumber}", method="post", role ="form")
+                  .form-group
+                    .col-xs-5.col-sm-5
+                        input#points.form-control(name="points") 
+                    .col-xs-6.col-sm-6
+                        button.btn.btn-default.pull-right Add or Redeem Points
+            
     .col-xs-12.col-sm-6
         .panel.panel-primary
           .panel-heading
