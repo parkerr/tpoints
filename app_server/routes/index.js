@@ -10,7 +10,7 @@ router.get('/', ctrlOthers.about);
 
 /* Card Pages. */
 router.get('/cards', ctrlCards.cardList);
-router.get('/cards/card', ctrlCards.cardDetails);
+router.get('/cards/:cardNumber', ctrlCards.cardDetails);
 router.get('/cards/card/new', ctrlCards.cardNew);
 router.get('/cards/card/update', ctrlCards.cardUpdate);
 
