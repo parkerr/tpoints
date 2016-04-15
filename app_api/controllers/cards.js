@@ -154,7 +154,6 @@ module.exports.cardUpdateOne = function(req, res){
     var card2 = card[0];
    
     if(card2.length == 0){
-      
       sendJsonResponse(res, 404, {"message" : "card number not found"});
       return
       
