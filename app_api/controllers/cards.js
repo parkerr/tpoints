@@ -48,7 +48,7 @@ var getCardNumber = function(req, res){
       } else {
         card.cardHistory.push({
           points: req.body.points,
-          department: req.department
+          department: req.body.department
         })
       card.save(function(err, card){
         if(err){
