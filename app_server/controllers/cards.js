@@ -5,45 +5,74 @@ var apiOptions = {server : "http://localhost:3000"};
     apiOptions.server = "https://trapoints-demo-2016.herokuapp.com";
   }
 
+//The card list
+  var renderCardList = function(req, res, responseBody){
+  	res.render('card-list', { 
+      title: 'Active Cards',
+      pageHeader: {
+        title: 'Active Cards',  
+      },
+      cards: responseBody 
+     });	
+  };
+
+
 module.exports.cardList = function(req, res){
-	res.render('card-list', { 
-    title: 'Active Cards',
-    pageHeader: {
-      title: 'Active Cards',  
-    },
-    cards:[{
-      cardNumber: '12345678910',
-      points: 123
-    },{
-      cardNumber: '11111111111',
-      points: 76
-    },{
-      cardNumber: '22222222222',
-      points: 976
-    }]  
-   });	
+  var requestOptions, path;
+  path = '/api/cards';
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "GET",
+    json : {},
+  };
+  request(requestOptions, function(err, response, body){
+    renderCardList(req, res, body);
+  });
 }
 
-module.exports.cardDetails = function(req, res){
+
+var renderCardDetails = function(req, res, responseBody){
+  console.log(responseBody);
+  var cardDetails = responseBody[0];
 	res.render('card-detail', { 
     title: 'Card Details',
     pageHeader: {
       title: 'Card Details'
     },
-    cardNumber: '123456789',
-    points: 765,
-    historys: [{
-      date: '01/01/2016',
-      points: 37
-    },{
-      date: '01/02/2016',
-      points: 12345
-    }]
+    cardNumber: cardDetails.cardNumber,
+    points: cardDetails.points,
+    historys: cardDetails.cardHistory
    });	
+};
+
+
+module.exports.cardDetails = function(req, res){
+  var requestOptions, path;
+  path = '/api/cards/' + req.params.cardNumber;
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "GET",
+    json : {},
+  };
+  request(requestOptions, function(err, response, body){
+    renderCardDetails(req, res, body);
+  });
 }
 
-module.exports.cardNew = function(req, res){
-	res.render('card-new', { title: 'New Card' });	
+module.exports.getCardNew = function(req, res){
+  var requestOptions, path;
+  path = '/api/cards';
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "POST",
+    json : {},
+  };
+  request(requestOptions, function(err, response, body){
+    var newBody = [body];
+    
+    
+    renderCardList(req, res, newBody);
+  });
 }
 
 module.exports.cardUpdate = function(req, res){
