@@ -4,5 +4,10 @@ mixin formatDate(dateString)
   -var d = date.getDate();
   -var m = monthNames[date.getMonth()];
   -var y = date.getFullYear();
-  -var output = d + ' ' + m + ' ' + y;
+  -var h = date.getHours();
+  -var min = date.getMinutes();
+  -if(min < 10){min = '0' + min};
+  -var output = d + ' ' + m + ' ' + y + ' ' + h + ':' + min;
   =output
+  
+  

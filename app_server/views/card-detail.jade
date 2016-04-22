@@ -43,11 +43,11 @@ block content
             h2.panel-title Points History
           .panel-body.history-container
             each item in historys
-              .col-xs-12.list-group-item
+              list-group-item
                 .row
-                  small.historyTimestamp
+                  .col-xs-2.col-sm-2.small.historyTimestamp
                     +formatDate(item.date) &nbsp;
-                  small.points &nbsp; #{item.points}
+                  .col-xs-1.col-sm-1.small.points &nbsp; #{item.points}
 
                   
 
