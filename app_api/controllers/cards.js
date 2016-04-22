@@ -148,8 +148,8 @@ module.exports.cardReadOne = function(req, res){
   }    
 };
 
-module.exports.cardUpdateOne = function(req, res){
 
+module.exports.cardUpdateOne = function(req, res){
   Cards.find({cardNumber : req.params.cardNumber}).exec(function(err, card){
     var card2 = card[0];
    
@@ -162,9 +162,11 @@ module.exports.cardUpdateOne = function(req, res){
       sendJsonResponse(res, 404, err);
       return
     }
-    if(!req.body.points && req.body.email){
+    if(!req.body.points){
       card2.email = req.body.email;
+      console.log("Email only");
       card2.save(function(err, card){
+        
         if(err){
           console.log(err);
         }else{
@@ -173,6 +175,7 @@ module.exports.cardUpdateOne = function(req, res){
         }
       });
     } else {
+      console.log("POints only");
       updatePoints(req, res, card2);
     }
      
@@ -181,4 +184,13 @@ module.exports.cardUpdateOne = function(req, res){
   
 };
 
-
+module.exports.cardDeleteOne = function(req, res){
+  Cards.remove({cardNumber : req.params.cardNumber}).exec(function(err, card){
+    if(err){
+      sendJsonResponse(res, 404, err);
+      return
+    }
+    sendJsonResponse(res, 204, null);
+  });
+  
+};
