@@ -15,14 +15,17 @@ block content
           .panel-body
             p.cardnumber Cardnumber: #{cardNumber}
             p.points Current Points Total: #{points}
+            p.row
+            p.row
             .row
-              .col-xs-12.col-sm-6
+              .col-xs-12.col-sm-12
                 form.form-horizontal(action="/cards/#{cardNumber}", method="post", role ="form")
                   .form-group
-                    .col-xs-5.col-sm-5
-                        input#points.form-control(name="points") 
-                    .col-xs-6.col-sm-6
-                        button.btn.btn-default.pull-right Add or Redeem Points
+                    .col-xs-3.col-sm-3
+                        input#points.form-control(name="points", placeholder="points")
+                    .col-xs-1.col-sm-1
+                    .col-xs-3.col-sm-3
+                        button.btn.btn-success.pull-right Add or Redeem Points
             
     .col-xs-12.col-sm-6
         .panel.panel-primary
@@ -31,7 +34,7 @@ block content
           .panel-body
             #qrcode.well.well-sm.col-centred.row-centred
             script.
-              new QRCode(document.getElementById("qrcode"), {text: #{cardNumber}, width: 101, height:101});
+              new QRCode(document.getElementById("qrcode"), {text: #{cardNumber}, width: 100, height:100});
               
     .row
       .col-xs-12

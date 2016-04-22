@@ -32,7 +32,6 @@ module.exports.cardList = function(req, res){
 
 
 var renderCardDetails = function(req, res, responseBody){
-  console.log(responseBody);
   var cardDetails = responseBody[0];
 	res.render('card-detail', { 
     title: 'Card Details',
@@ -69,12 +68,38 @@ module.exports.getCardNew = function(req, res){
   };
   request(requestOptions, function(err, response, body){
     var newBody = [body];
-    
-    
     renderCardList(req, res, newBody);
   });
 }
 
 module.exports.cardUpdate = function(req, res){
-	res.render('card-update', { title: 'Update Card' });	
+  var requestOptions, path;
+  path = '/api/cards/' + req.params.cardNumber;
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "PUT",
+    json : {"points" : req.body.points}
+  };
+  request(requestOptions, function(err, response, body){
+    var newBody = [body];
+    renderCardDetails(req, res, newBody);
+  });
+}
+
+module.exports.cardDelete = function(req, res){
+  var requestOptions, path;
+  path = '/api/cards/' + req.params.cardNumber;
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "DELETE",
+    json : {}
+  };
+  request(requestOptions, function(err, response){
+  	res.render('about', { 
+      title: 'About TraPoints',
+      pageHeader: {
+        title: 'TraPoints',
+      }
+     });	
+  });
 }

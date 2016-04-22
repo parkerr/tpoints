@@ -12,7 +12,8 @@ router.get('/', ctrlOthers.about);
 router.get('/cards', ctrlCards.cardList);
 router.get('/cards/:cardNumber', ctrlCards.cardDetails);
 router.post('/cards', ctrlCards.getCardNew);
-router.put('/cards/:cardNumber', ctrlCards.cardUpdate);
+router.post('/cards/:cardNumber', ctrlCards.cardUpdate);
+router.post('/cards/delete/:cardNumber', ctrlCards.cardDelete);
 
 
 module.exports = router;
