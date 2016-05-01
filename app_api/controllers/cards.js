@@ -141,7 +141,7 @@ module.exports.cardReadOne = function(req, res){
         sendJsonResponse(res, 404, err);
         return
       }
-      sendJsonResponse(res, 200, card);
+      sendJsonResponse(res, 200, card[0]);
     });
   } else {
     sendJsonResponse(res, 404, {"message" : "no card number in request"});
