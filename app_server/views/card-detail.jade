@@ -34,7 +34,7 @@ block content
           .panel-body
             #qrcode.well.well-sm.col-centred.row-centred
             script.
-              new QRCode(document.getElementById("qrcode"), {text: #{cardNumber}, width: 100, height:100});
+              new QRCode(document.getElementById("qrcode"), {text:('!{cardNumber}'), width: 100, height:100});
               
     .row
       .col-xs-12
