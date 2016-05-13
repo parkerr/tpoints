@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Cards = mongoose.model('Card');
-
+var request = require('request');
 
 var randomFixedInteger = function (length) {
     return Math.floor(Math.pow(10, length-1) + Math.random() * (Math.pow(10, length) - Math.pow(10, length-1) - 1));
@@ -85,11 +85,31 @@ var getCardNumber = function(req, res){
           }else{
             console.log("Points Updated")
             sendJsonResponse(res, 200, card);
+            updateInfusionsoft(card);
           }
         });
 
       }
     };
+
+
+
+    var updateInfusionsoft = function(card){
+      var body = '<methodCall><methodName>ContactService.update</methodName><params><param><value><string>6b6e060840332c7607257d45cae2482a</string></value></param><param><value><int>1494</int></value></param><param><value><struct><member><name>State</name><value><string>' + card.points + '</string></value></member></struct></value></param></params></methodCall>';
+      var requestOptions, path;
+      path = 'https://nv251.infusionsoft.com/api/xmlrpc';
+      requestOptions = {
+        url : path,
+        method : "POST",
+        body : body,
+        headers: {'Content-Type': 'text/xml'}
+      };
+      request(requestOptions, function(err, response, body){
+        console.log(body);
+      });
+       
+    };
+
 
 
 

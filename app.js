@@ -24,18 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use(function (req, res, next) {
-  if ('OPTIONS' == req.method) {
-       res.header('Access-Control-Allow-Origin', '*');
-       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-       res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-       res.send(200);
-     }else{
-             next();
-     }
-    });
-
 app.use('/', routes);
 app.use('/api', routesApi);
 app.use('/users', users);
